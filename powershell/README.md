@@ -1,226 +1,128 @@
-# Powershell Aliases
+# PowerShell Aliases
 
 A collection of useful PowerShell aliases to boost productivity and streamline your command-line experience.
 
-## Steps
+## Prerequisites
 
-### 1. Git clone the project.
+- Windows PowerShell or PowerShell Core
+- Git
+- Administrator privileges (for creating symlinks)
+- Visual Studio Code (or your preferred text editor)
 
-Navigate to `D:/Repositories/vokewasike` and git clone the project in this directory.
+## Setup Instructions
 
+1. Clone the repository:
+   ``` powershell
+   git clone git@github.com:vokewasike/aliases.git
+   cd aliases
+   ```
 
+2. Create and configure environment variables:
+   - Copy `.env.example` to `.env`
+   - Edit `.env` and set your personal paths and configurations
+   - Never commit your `.env` file as it may contain sensitive information
+     ``` properties
+     TEXT_EDITOR=code
+     REPO_PATH=D:/Your/Repos/Path
+     ...
+     ```
 
-``` powershell
-cd D:/Repositories/vokewasike
+3. Generate the PowerShell profile:
+   ``` powershell
+   cd powershell/scripts
+   ./generate-profile.ps1
+   ```
+
+4. Link the profile (requires **administrator** privileges):
+   ``` powershell
+   ./link-profile.ps1
+   ```
+
+5. To remove the profile link when needed:
+   ``` powershell
+   ./unlink-profile.ps1
+   ```
+
+## Available Aliases
+
+### Repository Navigation
+- `repos` - Navigate to repositories root
+- `personal_repos` - Navigate to personal repositories
+- `treeolive_repos` - Navigate to work repositories
+
+### Common Folders
+- `downloads`, `desktop`, `docs`, `pics`, `vids`, `music` - Quick navigation to user folders
+- `editaliases` - Open aliases repository in configured text editor
+
+### Python & Django
+- `installreq` - Install Python requirements
+- `startproject`, `startapp` - Django project management
+- `runserver` - Start Django development server
+- `makemigrations`, `migrate` - Database migrations
+- And more...
+
+### Utility Commands
+- `la` - List all files (including hidden)
+- `touch` - Create new files or update timestamps
+
+## Usage Examples
+
+### Navigation
+```powershell
+repos                 # Go to repositories root
+personal_repos        # Go to personal repositories
+downloads            # Go to Downloads folder
+docs                # Go to Documents folder
 ```
 
-``` powershell
-git clone git@github.com:vokewasike/aliases.git
+### Python/Django
+```powershell
+installreq           # Install Python requirements
+startproject mysite  # Create new Django project
+startapp blog       # Create new Django app
+runserver          # Run Django development server
 ```
 
-> ℹ️ **Note:** <br />
-> Do not directly edit the aliases in this README file. Instead, edit the `Microsoft.PowerShell_profile.ps1` file and then run the `update-readme.ps1` script to update the aliases section in the README. <br />
-> If you change the location of where you git clone the project, remember to update the relevant parts in the `Microsoft.PowerShell_profile.ps1` file as indicated in the comments that are in the file.
-
-``` powershell
-cd scripts
+### SSH Commands
+```powershell
+treeolive_code      # SSH into server as treeolive user
+treeolive_code_vokewasike  # SSH into server as vokewasike user
 ```
 
-``` powershell
-./update-readme.ps1
+### File Transfer (SCP)
+```powershell
+# Basic usage: Copy file to remote home directory
+scpto "local-file.txt"
+
+# Copy to specific remote directory
+scpto "local-file.txt" "~/project/uploads/"
+
+# Copy with different user
+scpto "local-file.txt" "~/" "different_user"
+
+# Copy multiple files using wildcards
+scpto "*.jpg" "~/images/"
+scpto "project/*.pdf" "~/documents/"
+
+# Copy entire directories
+scpto "local-folder/*" "~/remote-folder/"
+
+# Copy specific file types recursively
+scpto "src/**/*.js" "~/backend/src/"
+
+# Real-world examples
+scpto "dist/app.zip" "/var/www/deployments/"
+scpto "configs/*.json" "~/app/config/"
+scpto "images/*" "~/public/uploads/" "webuser"
 ```
 
-To link the profile to the PowerShell profile location, run the link-profile.ps1 script _as an **administrator**_.
-
-> ℹ️ **Note:** <br />
-> Ensure you confirm the target location (edit the link-profile.ps1 script) before running the script.
-> Ensure you run the script using administrator privileges.
-
-
-``` powershell
-cd scripts
+### Utility Commands
+```powershell
+la                  # List all files including hidden
+touch newfile.txt   # Create new file or update timestamp
+editaliases         # Open aliases repo in configured editor
 ```
 
-``` powershell
-./link-profile.ps1
-```
+## Customization
 
-``` powershell
-# =================== Repositories folders ====================
-# * NOTE: If you change the location of the either personal or treeolive, or the main repo folder that holds these two, update here as well
-
-function Set-Repositories {
-    Set-Location -Path "D:/Repositories/"
-}
-Set-Alias repos Set-Repositories
-Set-Alias Repositories Set-Repositories
-
-# ---
-
-function Set-PersonalRepositories {
-    Set-Repositories
-    Set-Location -Path "vokewasike/"
-}
-Set-Alias personal_repos Set-PersonalRepositories
-
-# ---
-
-function Set-TreeoliveRepositories {
-    Set-Repositories
-    Set-Location -Path "treeolive/"
-}
-Set-Alias treeolive_repos Set-TreeoliveRepositories
-
-# =================== Aliases repository  folder ====================
-# * NOTE: If you change the aliases repo or folder name on your local machine, update here as well
-
-function Edit-Aliases {
-    personal_repos && Set-Location -Path "aliases/" && code .
-}
-Set-Alias editaliases Edit-Aliases
-
-# =================== Other Local / Cloud Folders ====================
-
-function Set-Downloads {
-    Set-Location -Path "C:\Users\vokewasike\Downloads"
-}
-Set-Alias downloads Set-Downloads
-Set-Alias Downloads Set-Downloads
-
-# ---
-
-function Set-Desktop {
-    Set-Location -Path "C:\Users\vokewasike\OneDrive\Desktop"
-}
-Set-Alias desktop Set-Desktop
-Set-Alias Desktop Set-Desktop
-
-# ---
-
-function Set-Videos {
-    Set-Location -Path "C:\Users\vokewasike\OneDrive\Videos"
-}
-Set-Alias vids Set-Videos
-Set-Alias videos Set-Videos
-Set-Alias Videos Set-Videos
-
-# ---
-
-function Set-Pictures {
-    Set-Location -Path "C:\Users\vokewasike\OneDrive\Pictures"
-}
-Set-Alias pics Set-Pictures
-Set-Alias pictures Set-Pictures
-Set-Alias Pictures Set-Pictures
-
-# ---
-
-function Set-Documents {
-    Set-Location -Path "C:\Users\vokewasike\OneDrive\Documents"
-}
-Set-Alias docs Set-Documents
-Set-Alias documents Set-Documents
-Set-Alias Documents Set-Documents
-
-# ---
-
-function Set-Music {
-    Set-Location -Path "C:\Users\vokewasike\OneDrive\Music"
-}
-Set-Alias music Set-Music
-Set-Alias Music Set-Music
-
-# =================== Python ====================
-
-function Install-Requirements {
-    python3 -m pip install --upgrade pip && pip install -r requirements.txt
-}
-Set-Alias installreq Install-Requirements
-
-# ---
-
-function New-Project {
-    django-admin startproject $args
-}
-Set-Alias startproject New-Project
-
-# ---
-
-function New-DjangoApp {
-    django-admin startapp $args
-}
-Set-Alias startapp New-DjangoApp
-
-# ---
-
-function New-Migrations {
-    python manage.py makemigrations $args
-}
-Set-Alias makemigrations New-Migrations
-
-# ---
-
-function Update-Migrations {
-    python manage.py migrate $args
-}
-Set-Alias migrate Update-Migrations
-
-# ---
-
-function New-DjangoSuperuser {
-    python manage.py createsuperuser $args
-}
-Set-Alias createsuperuser New-DjangoSuperuser
-
-# ---
-
-function Export-DjangoStatic {
-    python manage.py collectstatic $args
-}
-Set-Alias collectstatic Export-DjangoStatic
-
-# ---
-
-function Start-DjangoServer {
-    python manage.py runserver $args
-}
-Set-Alias runserver Start-DjangoServer
-
-# ---
-
-function Import-DjangoData {
-    python manage.py loaddata $args
-}
-Set-Alias loaddata Import-DjangoData
-
-# =================== SSH ====================
-
-function Set-TreeoliveCode {
-    ssh -i "C:\Users\vokewasike\OneDrive\Treeolive Technologies\Documents\SSH\keys\treeolive-aws.pem" treeolive@ec2-13-244-135-166.af-south-1.compute.amazonaws.com
-}
-Set-Alias treeolive_code Set-TreeoliveCode
-
-# ---
-
-function Set-TreeoliveCodeVokewasike {
-    ssh -i "C:\Users\vokewasike\OneDrive\Treeolive Technologies\Documents\SSH\keys\treeolive-aws.pem" vokewasike@ec2-13-244-135-166.af-south-1.compute.amazonaws.com
-}
-Set-Alias treeolive_code_vokewasike Set-TreeoliveCodeVokewasike
-
-# =================== Misc ====================
-
-function Get-HiddenItems {
-    Get-ChildItem && Get-ChildItem -Hidden
-}
-Set-Alias la Get-HiddenItems
-
-# ---
-
-function New-File {
-    param ( [string]$path ) if (Test-Path $path) { (Get-Item $path).LastWriteTime = Get-Date } else { New-Item $path -ItemType File }
-}
-Set-Alias touch New-File
-
-# ---
-
-```
+Edit the `.env` file to customize paths and settings according to your needs.

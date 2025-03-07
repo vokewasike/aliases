@@ -1,4 +1,37 @@
-# =================== Local / Cloud Folders ====================
+# =================== Repositories folders ====================
+# * NOTE: If you change the location of the either personal or treeolive, or the main repo folder that holds these two, update here as well
+
+function Set-Repositories {
+    Set-Location -Path "D:/Repositories/"
+}
+Set-Alias repos Set-Repositories
+Set-Alias Repositories Set-Repositories
+
+# ---
+
+function Set-PersonalRepositories {
+    Set-Repositories
+    Set-Location -Path "vokewasike/"
+}
+Set-Alias personal_repos Set-PersonalRepositories
+
+# ---
+
+function Set-TreeoliveRepositories {
+    Set-Repositories
+    Set-Location -Path "treeolive/"
+}
+Set-Alias treeolive_repos Set-TreeoliveRepositories
+
+# =================== Aliases repository  folder ====================
+# * NOTE: If you change the aliases repo or folder name on your local machine, update here as well
+
+function Edit-Aliases {
+    personal_repos && Set-Location -Path "aliases/" && code .
+}
+Set-Alias editaliases Edit-Aliases
+
+# =================== Other Local / Cloud Folders ====================
 
 function Set-Downloads {
     Set-Location -Path "C:\Users\vokewasike\Downloads"
@@ -112,50 +145,21 @@ function Import-DjangoData {
 }
 Set-Alias loaddata Import-DjangoData
 
-# =================== Repositories ====================
-
-function Set-Repositories {
-    Set-Location -Path "D:/Repositories/"
-}
-Set-Alias repos Set-Repositories
-Set-Alias Repositories Set-Repositories
-
-# ---
-
-function Set-PersonalRepositories {
-    Set-Repositories
-    Set-Location -Path "vokewasike/"
-}
-Set-Alias personal_repos Set-PersonalRepositories
-
-# ---
-
-function Set-TreeoliveRepositories {
-    Set-Repositories
-    Set-Location -Path "treeolive/"
-}
-Set-Alias lox_repos Set-TreeoliveRepositories
-
 # =================== SSH ====================
+
 function Set-TreeoliveCode {
     ssh -i "C:\Users\vokewasike\OneDrive\Treeolive Technologies\Documents\SSH\keys\treeolive-aws.pem" treeolive@ec2-13-244-135-166.af-south-1.compute.amazonaws.com
 }
 Set-Alias treeolive_code Set-TreeoliveCode
+
+# ---
 
 function Set-TreeoliveCodeVokewasike {
     ssh -i "C:\Users\vokewasike\OneDrive\Treeolive Technologies\Documents\SSH\keys\treeolive-aws.pem" vokewasike@ec2-13-244-135-166.af-south-1.compute.amazonaws.com
 }
 Set-Alias treeolive_code_vokewasike Set-TreeoliveCodeVokewasike
 
-
 # =================== Misc ====================
-
-function Edit-Aliases {
-    personal_repos && Set-Location -Path "aliases/" && code .
-}
-Set-Alias editaliases Edit-Aliases
-
-# ---
 
 function Get-HiddenItems {
     Get-ChildItem && Get-ChildItem -Hidden

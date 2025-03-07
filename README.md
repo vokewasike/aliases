@@ -1,6 +1,6 @@
 # aliases
 
-A collection of useful PowerShell and Bash aliases to boost productivity and streamline command-line and development experience.
+A collection of useful Windows PowerShell to boost productivity and streamline command-line and development experience.
 
 ## Features
 
@@ -8,3 +8,5 @@ A collection of useful PowerShell and Bash aliases to boost productivity and str
 - Simplifies repetitive tasks with custom shortcuts.
 - Easily modifiable for personal or team preferences.
 
+## Setup
+For more instructions on how to set up Windows Powershell aliases, [click here](./powershell/README.md).

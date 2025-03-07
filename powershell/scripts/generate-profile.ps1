@@ -15,7 +15,7 @@ Get-Content -Path $envFilePath | ForEach-Object {
 # =================== Repositories folders ====================
 
 function Set-Repositories {
-    Set-Location -Path "${REPO_PATH}"
+    Set-Location -Path "${REPOS_PATH}"
 }
 Set-Alias repos Set-Repositories
 Set-Alias Repositories Set-Repositories
@@ -23,16 +23,16 @@ Set-Alias Repositories Set-Repositories
 # ---
 
 function Set-PersonalRepositories {
-    Set-Location -Path "${PERSONAL_REPO_PATH}"
+    Set-Location -Path "${PERSONAL_REPOS_PATH}"
 }
 Set-Alias personal_repos Set-PersonalRepositories
 
 # ---
 
-function Set-TreeoliveRepositories {
-    Set-Location -Path "${WORK_REPO_PATH}"
+function Set-WorkRepositories {
+    Set-Location -Path "${WORK_REPOS_PATH}"
 }
-Set-Alias treeolive_repos Set-TreeoliveRepositories
+Set-Alias work_repos Set-WorkRepositories
 
 # =================== Aliases repository  folder ====================
 

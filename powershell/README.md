@@ -48,7 +48,7 @@ A collection of useful PowerShell aliases to boost productivity and streamline y
 ### Repository Navigation
 - `repos` - Navigate to repositories root
 - `personal_repos` - Navigate to personal repositories
-- `treeolive_repos` - Navigate to work repositories
+- `work_repos` - Navigate to work repositories
 
 ### Common Folders
 - `downloads`, `desktop`, `docs`, `pics`, `vids`, `music` - Quick navigation to user folders

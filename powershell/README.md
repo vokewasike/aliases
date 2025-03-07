@@ -23,7 +23,7 @@ A collection of useful PowerShell aliases to boost productivity and streamline y
    - Never commit your `.env` file as it may contain sensitive information
      ``` properties
      TEXT_EDITOR=code
-     REPO_PATH=D:/Your/Repos/Path
+     REPOS_PATH=D:/Your/Repos/Path
      ...
      ```
 

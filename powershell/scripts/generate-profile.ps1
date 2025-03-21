@@ -158,7 +158,7 @@ Set-Alias loaddata Import-DjangoData
 # =================== SSH ====================
 
 function Set-TreeoliveCode {
-    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_TREEOLIVE}@${SSH_HOST_CODE}
+    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_AVATAR}@${SSH_HOST_CODE}
 }
 Set-Alias treeolive_code Set-TreeoliveCode
 
@@ -176,7 +176,7 @@ function Copy-ToRemoteServer {
         [Parameter(Mandatory=`$true)]
         [string]`$localPath,
         [string]`$remotePath = "~/",
-        [string]`$user = "`${SSH_USER_TREEOLIVE}"
+        [string]`$user = "`${SSH_USER_AVATAR}"
     )
     scp -i "${SSH_KEY_PATH}" "`$localPath" "`${user}@${SSH_HOST_CODE}:`$remotePath"
 }

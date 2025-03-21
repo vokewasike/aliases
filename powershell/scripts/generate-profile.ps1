@@ -37,21 +37,21 @@ Set-Alias avatar_repos Set-AvatarRepositories
 # ---
 
 function Set-RemoteRepositories {
-    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_PERSONAL}@${SSH_HOST_CODE}:"/home/${SSH_USER_PERSONAL}/repos"
+    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_PERSONAL}@${SSH_HOST_CODE} -t "cd /home/${SSH_USER_PERSONAL}/repos; bash -l"
 }
 Set-Alias remote_repos Set-RemoteRepositories
 
 # ---
 
 function Set-RemotePersonalRepositories {
-    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_PERSONAL}@${SSH_HOST_CODE}:"/home/${SSH_USER_PERSONAL}/repos/vokewasike"
+    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_PERSONAL}@${SSH_HOST_CODE} -t "cd /home/${SSH_USER_PERSONAL}/repos/vokewasike; bash -l"
 }
 Set-Alias remote_personal_repos Set-RemotePersonalRepositories
 
 # ---
 
 function Set-RemoteAvatarRepositories {
-    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_PERSONAL}@${SSH_HOST_CODE}:"/home/${SSH_USER_PERSONAL}/repos/loxinformatics"
+    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_PERSONAL}@${SSH_HOST_CODE} -t "cd /home/${SSH_USER_PERSONAL}/repos/loxinformatics; bash -l"
 }
 Set-Alias remote_avatar_repos Set-RemoteAvatarRepositories
 

@@ -29,10 +29,31 @@ Set-Alias personal_repos Set-PersonalRepositories
 
 # ---
 
-function Set-WorkRepositories {
+function Set-AvatarRepositories {
     Set-Location -Path "${WORK_REPOS_PATH}"
 }
-Set-Alias work_repos Set-WorkRepositories
+Set-Alias avatar_repos Set-AvatarRepositories
+
+# ---
+
+function Set-RemoteRepositories {
+    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_PERSONAL}@${SSH_HOST_CODE}:"/home/${SSH_USER_PERSONAL}/repos"
+}
+Set-Alias remote_repos Set-RemoteRepositories
+
+# ---
+
+function Set-RemotePersonalRepositories {
+    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_PERSONAL}@${SSH_HOST_CODE}:"/home/${SSH_USER_PERSONAL}/repos/vokewasike"
+}
+Set-Alias remote_personal_repos Set-RemotePersonalRepositories
+
+# ---
+
+function Set-RemoteAvatarRepositories {
+    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_PERSONAL}@${SSH_HOST_CODE}:"/home/${SSH_USER_PERSONAL}/repos/loxinformatics"
+}
+Set-Alias remote_avatar_repos Set-RemoteAvatarRepositories
 
 # =================== Aliases repository  folder ====================
 
@@ -154,20 +175,6 @@ function Import-DjangoData {
     python manage.py loaddata `$args
 }
 Set-Alias loaddata Import-DjangoData
-
-# =================== SSH ====================
-
-function Set-TreeoliveCode {
-    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_AVATAR}@${SSH_HOST_CODE}
-}
-Set-Alias treeolive_code Set-TreeoliveCode
-
-# ---
-
-function Set-TreeoliveCodeVokewasike {
-    ssh -i "${SSH_KEY_PATH}" ${SSH_USER_VOKEWASIKE}@${SSH_HOST_CODE}
-}
-Set-Alias treeolive_code_vokewasike Set-TreeoliveCodeVokewasike
 
 # =================== SCP ====================
 

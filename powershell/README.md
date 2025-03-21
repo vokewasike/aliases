@@ -48,7 +48,11 @@ A collection of useful PowerShell aliases to boost productivity and streamline y
 ### Repository Navigation
 - `repos` - Navigate to repositories root
 - `personal_repos` - Navigate to personal repositories
-- `work_repos` - Navigate to work repositories
+- `avatar_repos` - Navigate to work/avatar repositories
+- `remote_repos` - Navigate to remote server repositories root
+- `remote_personal_repos` - Navigate to remote server personal repositories
+- `remote_avatar_repos` - Navigate to remote server work/avatar repositories
+
 
 ### Common Folders
 - `downloads`, `desktop`, `docs`, `pics`, `vids`, `music` - Quick navigation to user folders
